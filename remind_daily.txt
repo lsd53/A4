@@ -1,0 +1,1 @@
+0 6 * * 1,2,3,4,5 ./home/lsd53/CS2043/a4/act_reminder.sh
