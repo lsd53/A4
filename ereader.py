@@ -19,7 +19,7 @@ if len(sys.argv) <= 2:
 				print s
 			key=raw_input()
 			i=i+40
-		file.write(md5_hash+i)
+		file.write(md5_hash+str(i))
 
 	else:
 		lines_read='0'
@@ -34,4 +34,3 @@ if len(sys.argv) <= 2:
 			key=raw_input()
 			i=i+40
 
-		

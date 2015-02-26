@@ -1,4 +1,3 @@
-
 Mon : List of activities for Monday
 Tue : List of activities for Tuesday
 Wed : List of activities for Wednesday
