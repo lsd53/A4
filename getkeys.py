@@ -1,3 +1,4 @@
+#! /usr/bin/python
 import termios, fcntl, sys, os
 fd = sys.stdin.fileno()
 
