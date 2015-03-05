@@ -16,7 +16,8 @@ if len(sys.argv) <= 2:
 	text=open(text_location,'r+')
 	
 	text1=text.readlines()
-	md5_hash=hashlib.md5(text.read()).hexdigest()
+	command='md5sum '+ text_location
+	md5_hash=os.popen(command).readlines()[0]
 	page=40
 	text.close()
 else:
@@ -24,14 +25,14 @@ else:
 	page=int(sys.argv[2])
 	text_location=os.getcwd()+'/'+sys.argv[3]
 	text=open(text_location,'r+')
-	
+	command='md5sum ' + text_location
 	text1=text.readlines()
-	md5_hash=hashlib.md5(text.read()).hexdigest()
+	md5_hash=os.popen(command).readlines()[0]
 
 	text.close()
 
-
-print md5_hash
+md5_hash=md5_hash.split()[0]
+lines_print=[]
 if md5_hash not in [s.split(',')[0] for s in file_lines]:
 	i=page
 	for s in text1[0:page]:
@@ -51,8 +52,9 @@ if md5_hash not in [s.split(',')[0] for s in file_lines]:
 			
 		key=raw_input()
 	
-	file.write(md5_hash+','+str(i))
 
+	file_lines.append(str(md5_hash)+','+str(i))
+	lines_print=file_lines
 else:
 	lines_read='0'
 	for line in file_lines:
@@ -80,10 +82,16 @@ else:
 		
 	for x in xrange(len(file_lines)):
 		if md5_hash==line.split(',')[0]:
-			file_lines[x]=line.split(',')[0]+','+str(i)
-		file.write(file_lines[x])
+			lines_print.append(line.split(',')[0]+','+str(i))
+		else:
+			lines_print.append(file_lines[x])
 
-os.system('clear')
+
+for x in xrange(len(lines_print)):
+	file.write(lines_print[x]+'\n')
+
+print file_lines
+#os.system('clear')
 
 file.close()
 
